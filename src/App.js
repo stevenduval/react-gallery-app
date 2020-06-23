@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './css/index.css';
 import axios from 'axios';
 import apiKey from "./config"
@@ -41,15 +41,15 @@ class App extends Component {
           {/* setup routes for the react app */}
           <Switch>
             {/* redirect all users to puppies when app first loads */}
-            <Route exact path="/" render={() => <Redirect to="/puppies" />} />
+            <Route exact path="/" >
+              <Redirect to="/puppies" />
+            </Route>
             {/* route to display components if url is '/term' or '/search/term' */}
-            <Route exact path={["/:id", "/search/:id"]} render={() => 
-              <Fragment>
+            <Route exact path={["/:id", "/search/:id"]}>
                 <Search fetchImages={this.fetchImages} /> 
                 <Nav /> 
                 {(this.state.loading) ? <p>Loading...</p> : <PhotoContainer results={this.state.searchResults} term={this.state.searchTerm}/> }
-              </Fragment>
-            } />
+            </Route>
             {/* route if path does not match one of the above */}
             <Route component={Error} />
           </Switch>
