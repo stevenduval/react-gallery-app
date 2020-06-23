@@ -14,11 +14,11 @@ Message appears when no results are returned from the search.
 Page not found message appears when route does not exist.
 
 ### Installing
-This project does utilize node, so you will need to ensure Node is installed on your machine (link is below).  Once you have installed Node you will need to install the project dependencies that are referenced in the package.json file.
+This project does utilize React, so you will need to ensure React is installed on your machine (link is below).  Once you have installed React you will need to install the project dependencies that are referenced in the package.json file.
 
 ## Deployment
 
-Clone the project - (https://github.com/stevenduval/static_node_and_express_site/) -  
+Clone the project - (https://github.com/stevenduval/react-gallery-app) -  
 
 ## Built With
 
