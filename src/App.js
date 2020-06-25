@@ -16,10 +16,11 @@ class App extends Component {
   state = {
       searchTerm: '',
       searchResults: [],
-      loading: true
+      loading: ''
   }
   // call to flickr api
   fetchImages = (term) => {
+    this.setState({loading: true});
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&safe_search=1&content_type=1&format=json&tags=${term}&per_page=24&nojsoncallback=1`)
       // set states upon successful response
       .then( response => {
@@ -45,7 +46,7 @@ class App extends Component {
               <Redirect to="/puppies" />
             </Route>
             {/* route to display components if url is '/term' or '/search/term' */}
-            <Route exact path={["/:id", "/search/:id"]}>
+            <Route exact path={["/puppies", "/sunsets", "/summer", "/search/:id"]}>
                 <Search fetchImages={this.fetchImages} /> 
                 <Nav /> 
                 {(this.state.loading) ? <p>Loading...</p> : <PhotoContainer results={this.state.searchResults} term={this.state.searchTerm}/> }

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-class Search extends Component{ 
+class Search extends Component { 
   // fetch images when search component is fully mounted
   componentDidMount() {
-    this.props.fetchImages(this.props.match.params.id);
+    // set param value depdending upon if its a navLink or if its from the /search path
+    this.props.match.params.id = (!this.props.match.params.id) ? this.props.match.path.split('/')[1] : this.props.match.params.id;
+    this.props.fetchImages(this.props.match.params.id );
   }
   // fetch images when search component is updated (used for NavLinks and preserving forward and backward browser actions)
   componentDidUpdate(prevProps) {
+    // set param value depdending upon if its a navLink or if its from the /search path 
+    this.props.match.params.id = (!this.props.match.params.id) ? this.props.match.path.split('/')[1] : this.props.match.params.id;
     // if current url params do not match previous url params fetch new images
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.fetchImages(this.props.match.params.id);
